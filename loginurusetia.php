@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
 
         if($row['PassUs'] == $_POST['PassUs']){
             echo "<script>alert('sucessful login');
-            linux.location.href='homeurusetia.php';</script>";        
+            window.location.href='homeurusetia.php';</script>";        
         }
         else{
             echo"wrong password";
