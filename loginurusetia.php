@@ -32,52 +32,49 @@
     <div class="navigation">    
     </div>
     <div class="content">
-        <form action="action_page.php" method="POST">
-    </div>
+        <form method="POST">
+            <div class="container">
+                <label><b>Idurusetia</b></label>
+                <input type="number" placeholder="Id urusetia" name="Idurusetia" required>
 
-    <div class="container">
-        <label><b>Idurusetia</b></label>
-        <input type="number" placeholder="Id urusetia" name="Idurusetia" required>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="password" name="PassUs" required>
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="password" name="PassUs" required>
+                <button type="submit" name="submit" value="login">Login</button>
+                <label>
+                    
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
 
-        <button type="submit" name="submit">Login</button>
-        <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <a href="loginpelajar.php"><button type="button" class="cancelbtn">pelajar?</button></a>
+                <a href="loginjuri.php"><button type="button" class="cancelbtn">juri?</button></a>
+                <span class="forget">Forgot <a href="troll.php">password?</a></span>
+                <a class="new" href="newacc.php">new account</a>
 
-    <div class="container" style="background-color:#f1f1f1">
-        <a href="loginpelajar.php"><button type="button" class="cancelbtn">pelajar?</button></a>
-        <a href="loginjuri.php"><button type="button" class="cancelbtn">juri?</button></a>
-        <span class="forget">Forgot <a href="troll.php">password?</a></span>
-        <a class="new" href="newacc.php">new account</a>
-  </div>
-</form>
-<?php
-if(isset($_POST['submit'])){
-    $query=mysqli_query($con,"SELECT * FROM urusetia WHERE Idurusetia='$_POST[Idurusetia] and PassUs='[PassUs]' ");
-    $row=mysqli_fetch_array($query);
+            </div>
+        </form>
+        <?php
+        if(isset($_POST['submit'])){
+            $query=mysqli_query($con,"SELECT * FROM urusetia WHERE Idurusetia='$_POST[Idurusetia]' and PassUs='$_POST[PassUs]' ");
+            $row=mysqli_fetch_array($query);
 
-    if($row['Idurusetia'] == $_POST['Idurusetia']){
-
-        if($row['PassUs'] == $_POST['PassUs']){
-            echo "<script>alert('sucessful login');
-            window.location.href='homeurusetia.php';</script>";        
+            if($row['Idurusetia'] == $_POST['Idurusetia']){
+                if($row['PassUs'] == $_POST['PassUs']){
+                    echo "<script>alert('sucessful login');
+                    window.location.href='homeurusetia.php';</script>";        
+                }
+                else{
+                    echo"wrong password";
+                }
+            }
+            else{
+                echo"username not exist";
+            }
         }
-        else{
-            echo"wrong password";
-        }
-    }
-    else{
-        echo"username not exist";
-    }
-}
-
-
-?>
+        ?>
     </div>
+
 </body>
-
 </html>
